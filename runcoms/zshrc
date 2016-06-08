@@ -145,6 +145,9 @@ alias scu="XDG_RUNTIME_DIR=/run/user/$UID systemctl --user"
 alias sorry='sudo $(fc -l -n -1)'
 alias wget='wget -c'
 
+# Remove unwanted prezto aliases
+unalias gws
+
 # --------------------------------------------------------------------------- #
 # Functions                                                                   #
 # --------------------------------------------------------------------------- #
