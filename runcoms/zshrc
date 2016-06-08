@@ -10,4 +10,243 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
+# --------------------------------------------------------------------------- #
+# OPTIONS                                                                     #
+# --------------------------------------------------------------------------- #
+# Disable ctrl-s and ctrl-q
+stty -ixon
+# Prevent command to eat all the memory
+ulimit -v 3072000
+
+# --------------------------------------------------------------------------- #
+# PATHS                                                                       #
+# --------------------------------------------------------------------------- #
+PATH=$PATH:~/.npm-packages/bin
+export PATH=$PATH:$(ruby -rubygems -e "puts Gem.user_dir")/bin
+export PATH=$PATH:/opt/anaconda/bin
+export PATH=~/.local/bin:$PATH
+
+# --------------------------------------------------------------------------- #
+# ENVIRONMENT VARIABLES                                                       #
+# --------------------------------------------------------------------------- #
+export ANDROID_HOME="/opt/android-sdk"
+export ARCHFLAGS="-arch native"
+export BROWSER="chromium"
+export EDITOR="emc"
+export GPG_ENV="${HOME}/.gpg-agent-info"
+export MAVEN_HOME=/opt/maven
+export REPORTTIME=5
+export WORKON_HOME=~/.virtualenvs
+export XDG_CONFIG_HOME="/home/fabien/.config/"
+
+# --------------------------------------------------------------------------- #
+# VIM BINDINGS                                                                #
+# --------------------------------------------------------------------------- #
+bindkey -v
+bindkey "e[1~" beginning-of-line
+bindkey "e[4~" end-of-line
+bindkey "e[5~" beginning-of-history
+bindkey "e[6~" end-of-history
+bindkey "e[3~" delete-char
+bindkey "e[2~" quoted-insert
+bindkey -M vicmd 'c' vi-backward-char
+bindkey -M vicmd 't' history-beginning-search-forward
+bindkey -M vicmd 's' history-beginning-search-backward
+bindkey -M vicmd 'r' vi-forward-char
+bindkey -M vicmd 'C' vi-beginning-of-line
+bindkey -M vicmd 'R' vi-end-of-line
+bindkey -M vicmd 'l' vi-change
+bindkey -M vicmd 'L' vi-change-eol
+bindkey -M vicmd 'h' vi-replace-chars
+bindkey -M vicmd 'H' vi-replace
+bindkey -M vicmd 'é' vi-forward-word
+bindkey -M viins 'gq' vi-cmd-mode
+bindkey -M vicmd '/' history-incremental-search-backward
+bindkey -M viins '^R' history-incremental-search-backward
+bindkey -M viins '^S' history-incremental-search-forward
+bindkey -M viins -s 'rcd' 'gqddiranger-cd\n'
+bindkey "^M" magic-enter
+
+# http://zshwiki.org/home/zle/bindkeys
+typeset -A key
+key[Home]=${terminfo[khome]}
+key[End]=${terminfo[kend]}
+key[Insert]=${terminfo[kich1]}
+key[Delete]=${terminfo[kdch1]}
+key[Up]=${terminfo[kcuu1]}
+key[Down]=${terminfo[kcud1]}
+key[Left]=${terminfo[kcub1]}
+key[Right]=${terminfo[kcuf1]}
+key[PageUp]=${terminfo[kpp]}
+key[PageDown]=${terminfo[knp]}
+[[ -n "${key[Home]}"     ]]  && bindkey  "${key[Home]}"     beginning-of-line
+[[ -n "${key[End]}"      ]]  && bindkey  "${key[End]}"      end-of-line
+[[ -n "${key[Insert]}"   ]]  && bindkey  "${key[Insert]}"   overwrite-mode
+[[ -n "${key[Delete]}"   ]]  && bindkey  "${key[Delete]}"   delete-char
+[[ -n "${key[Up]}"       ]]  && bindkey  "${key[Up]}"       up-line-or-history
+[[ -n "${key[Down]}"     ]]  && bindkey  "${key[Down]}"     down-line-or-history
+[[ -n "${key[Left]}"     ]]  && bindkey  "${key[Left]}"     backward-char
+[[ -n "${key[Right]}"    ]]  && bindkey  "${key[Right]}"    forward-char
+[[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"   beginning-of-buffer-or-history
+[[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}" end-of-buffer-or-history
+# Finally, make sure the terminal is in application mode, when zle is
+# active. Only then are the values from $terminfo valid.
+if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
+    function zle-line-init () {
+        printf '%s' "${terminfo[smkx]}"
+    }
+    function zle-line-finish () {
+        printf '%s' "${terminfo[rmkx]}"
+    }
+    zle -N zle-line-init
+    zle -N zle-line-finish
+fi
+
+# --------------------------------------------------------------------------- #
+# ALIASES                                                                     #
+# --------------------------------------------------------------------------- #
+alias RM='/usr/bin/rm -I'
+alias asshole='echo Alright. You do not have to be rude, you know. && sleep 0.8 && sudo $(fc -l -n -1)'
+alias chgrp='chgrp --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chown='chown --preserve-root'
+alias cofstart="nohup cvlc -qL /home/fabien/documents/coffitivity/* > /dev/null & echo \$! > /home/fabien/.cvlc.pid"
+alias cofstop="kill \$(cat /home/fabien/.cvlc.pid)"
+alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
+alias conftig='GIT_DIR=$HOME/.myconf/ tig'
+alias cp='cp -i'
+alias df='df -H'
+alias diff='colordiff'
+alias drmae='docker rmi $(docker images --filter "dangling=true" -q --no-trunc)'
+alias drmi='docker rm $(docker ps -qa --no-trunc --filter "status=exited")'
+alias du='du -sh'
+alias e='emc'
+alias git='hub'
+alias grep='grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn'
+alias hefr_vpnc='sudo pkill openconnect'
+alias hefr_vpno='sudo openconnect -b web-vpn.hefr.ch --authgroup "2 External Access" -u "sofr\fabien.dubosson"'
+alias l="k -Ah"
+alias ll="k -h"
+alias ln='ln -i'
+alias ls="ls --color --group-directories-first"
+alias maven=$MAVEN_HOME/bin/mvn
+alias mkdir='mkdir -pv'
+alias mountt='mount |column -t'
+alias mv='mv -i'
+alias mvn=color_maven
+alias o='emcb'
+alias pcat=pygmentize_cat
+alias peruhome="peru --file=.peru.yaml --sync-dir=./"
+alias pm='python manage.py'
+alias ports='netstat -tulanp'
+alias rm='trash-put'
+alias s="surfraw"
+alias scu="XDG_RUNTIME_DIR=/run/user/$UID systemctl --user"
+alias sorry='sudo $(fc -l -n -1)'
+alias wget='wget -c'
+
+# --------------------------------------------------------------------------- #
+# Functions                                                                   #
+# --------------------------------------------------------------------------- #
+function color_maven() {
+  $MAVEN_HOME/bin/mvn $* | sed \
+    -e 's/Tests run: \([^,]*\), Failures: \([^,]*\), Errors: \([^,]*\), Skipped: \([^,]*\)/\x1b[1;32mTests run: \1\x1b[0m, Failures: \x1b[1;31m\2\x1b[0m, Errors: \x1b[1;33m\3\x1b[0m, Skipped: \x1b[1;34m\4\x1b[0m/g' \
+    -e 's/\(\[WARN\].*\)/\x1b[1;33m\1\x1b[0m/g' \
+    -e 's/\(\[WARNING\].*\)/\x1b[1;33m\1\x1b[0m/g' \
+    -e 's/\(\[debug\].*\)/\x1b[1;36m\1\x1b[0m/ig' \
+    -e 's/\(\[INFO\].*\)/\x1b[1;34m\1\x1b[0m/g' \
+    -e 's/\(BUILD SUCCESS\)/\x1b[1;32m\1\x1b[0m/g' \
+    -e 's/\(BUILD FAILURE\)/\x1b[1;31m\1\x1b[0m/g' \
+    -e 's/\(\[ERROR\].*\)/\x1b[1;31m\1\x1b[0m/g'
+}
+
+function pvcp()
+{
+  SOURCE=$1
+
+  if [ -d $2 ]
+  then
+    DESTINATION=$2/`basename $SOURCE`
+  else
+    DESTINATION=$2
+  fi
+
+  pv ${SOURCE} | > ${DESTINATION}
+}
+
+function mdless()
+{
+  pandoc -s -f markdown -t man $1 | groff -T utf8 -man | less
+}
+
+function ranger-cd {
+    tempfile='/tmp/chosendir-ranger'
+    /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
+    test -f "$tempfile" &&
+    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
+        cd -- "$(cat "$tempfile")"
+    fi
+    /usr/bin/rm -f -- "$tempfile"
+}
+
+function md5dir {
+  (find "$1" -type f -exec md5sum {} +; find "$1" -type d) | LC_ALL=C sort | md5sum
+}
+
+function pygmentize_cat {
+  for arg in "$@"; do
+    pygmentize -g "${arg}" 2> /dev/null || /bin/cat "${arg}"
+  done
+}
+
+function highlight_less {
+    if highlight $@ 1>/dev/null 2>&1; then
+        highlight -O ansi $@ | less
+    else
+        less $@
+    fi
+}
+
+function magic-enter () {
+    if [[ -z $BUFFER ]]; then
+        echo ""
+        # if [[ -d .git ]]; then
+        #   git status
+        # else
+        ll
+        # fi
+        zle redisplay
+    else
+        zle accept-line
+    fi
+}
+
+function mergeIcal() {
+    sed -e '$d' $1
+    sed -e '1,/VEVENT/{/VEVENT/p;d}' $2
+}
+
+# --------------------------------------------------------------------------- #
+# SOURCE PLUGINS                                                              #
+# --------------------------------------------------------------------------- #
+source ~/.local/share/zsh/plugins/k.sh
+source /usr/bin/virtualenvwrapper.sh
+
+# --------------------------------------------------------------------------- #
+# TWEAKS                                                                      #
+# --------------------------------------------------------------------------- #
+zle -N magic-enter
+
+# git flow completion
+GIT_FLOW_ZSH="/usr/share/zsh/site-functions/git-flow-completion.zsh"
+[[ -f $GIT_FLOW_ZSH ]] && source $GIT_FLOW_ZSH
+
+# Set GPG TTY
+GPG_TTY=$(tty)
+export GPG_TTY
+
+# Parse GPG environment if existing
+if [ -f "$GPG_ENV" ]
+then
+    . "$GPG_ENV"
+fi
