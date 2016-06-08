@@ -240,13 +240,3 @@ zle -N magic-enter
 # git flow completion
 GIT_FLOW_ZSH="/usr/share/zsh/site-functions/git-flow-completion.zsh"
 [[ -f $GIT_FLOW_ZSH ]] && source $GIT_FLOW_ZSH
-
-# Set GPG TTY
-GPG_TTY=$(tty)
-export GPG_TTY
-
-# Parse GPG environment if existing
-if [ -f "$GPG_ENV" ]
-then
-    . "$GPG_ENV"
-fi
