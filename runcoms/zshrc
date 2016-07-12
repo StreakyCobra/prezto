@@ -33,7 +33,6 @@ export ANDROID_HOME="/opt/android-sdk"
 export ARCHFLAGS="-arch native"
 export BROWSER="chromium"
 export EDITOR="emc"
-export GNUPGHOME="${XDG_RUNTIME_DIR}/gnupg"
 export MAVEN_HOME=/opt/maven
 export REPORTTIME=5
 export WORKON_HOME=~/.virtualenvs
