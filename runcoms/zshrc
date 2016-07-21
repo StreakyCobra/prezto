@@ -138,6 +138,7 @@ alias pcat=pygmentize_cat
 alias peruhome="peru --file=.peru.yaml --sync-dir=./"
 alias pm='python manage.py'
 alias ports='netstat -tulanp'
+alias qledger='hledger -f qadmium.ledger'
 alias rm='trash-put'
 alias s="surfraw"
 alias scu="XDG_RUNTIME_DIR=/run/user/$UID systemctl --user"
