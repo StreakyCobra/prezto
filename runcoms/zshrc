@@ -31,7 +31,7 @@ export PATH=~/.local/bin:$PATH
 # --------------------------------------------------------------------------- #
 export ANDROID_HOME="/opt/android-sdk"
 export ARCHFLAGS="-arch native"
-export BROWSER="chromium"
+export BROWSER="qutebrowser"
 export EDITOR="emc"
 export MAVEN_HOME=/opt/maven
 export REPORTTIME=5
