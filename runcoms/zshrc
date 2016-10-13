@@ -33,6 +33,7 @@ export ANDROID_HOME="/opt/android-sdk"
 export ARCHFLAGS="-arch native"
 export BROWSER="qutebrowser"
 export EDITOR="emc"
+export LESS="-FSRXI"
 export MAVEN_HOME=/opt/maven
 export REPORTTIME=5
 export WORKON_HOME=~/.virtualenvs
