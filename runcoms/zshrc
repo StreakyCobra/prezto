@@ -38,6 +38,7 @@ export MAVEN_HOME=/opt/maven
 export REPORTTIME=5
 export WORKON_HOME=~/.virtualenvs
 export XDG_CONFIG_HOME="/home/fabien/.config/"
+export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
 
 # --------------------------------------------------------------------------- #
 # VIM BINDINGS                                                                #
