@@ -123,7 +123,8 @@ alias peruhome="peru --file=.peru.yaml --sync-dir=./"
 alias pm='python manage.py'
 alias ports='netstat -tulanp'
 alias rm='trash-put'
-alias scu="XDG_RUNTIME_DIR=/run/user/$UID systemctl --user"
+alias sc="sudo systemctl"
+alias scu="systemctl --user"
 alias sorry='sudo $(fc -l -n -1)'
 alias wget='wget -c'
 
