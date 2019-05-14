@@ -112,6 +112,7 @@ alias ll="k -h"
 alias ln='ln -i'
 alias ls="ls --color --group-directories-first"
 alias m=ranger-cd
+alias magit='emacsclient -c --eval "(progn (magit-status) (delete-other-windows))"'
 alias maven=$MAVEN_HOME/bin/mvn
 alias mkdir='mkdir -pv'
 alias mountt='mount |column -t'
