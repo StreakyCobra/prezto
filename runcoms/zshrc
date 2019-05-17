@@ -15,7 +15,7 @@ fi
 # --------------------------------------------------------------------------- #
 # Disable ctrl-s and ctrl-q
 stty -ixon
-# Prevent command to eat all the memory
+# Prevent commands to eat all the memory
 ulimit -v 8196000
 
 # --------------------------------------------------------------------------- #
@@ -34,7 +34,7 @@ export BROWSER="firefox"
 export EDITOR="emc"
 export LESS="-FSRXI"
 export MAVEN_HOME=/opt/maven
-export REPORTTIME=5
+export REPORTTIME=10
 export XDG_CONFIG_HOME="/home/fabien/.config/"
 export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
 
@@ -111,7 +111,7 @@ alias l="k -Ah"
 alias ll="k -h"
 alias ln='ln -i'
 alias ls="ls --color --group-directories-first"
-alias m=ranger-cd
+alias r=ranger-cd
 alias magit='emacsclient -c --eval "(progn (magit-status) (delete-other-windows))"'
 alias maven=$MAVEN_HOME/bin/mvn
 alias mkdir='mkdir -pv'
@@ -125,6 +125,7 @@ alias pm='python manage.py'
 alias ports='netstat -tulanp'
 alias rm='trash-put'
 alias sc="sudo systemctl"
+alias scrotclip="scrot -s /tmp/foo.png && xclip -selection c -t image/png /tmp/foo.png && rm -f /tmp/foo.png"
 alias scu="systemctl --user"
 alias sorry='sudo $(fc -l -n -1)'
 alias wget='wget -c'
