@@ -124,10 +124,12 @@ alias peruhome="peru --file=.peru.yaml --sync-dir=./"
 alias pm='python manage.py'
 alias ports='netstat -tulanp'
 alias rm='trash-put'
+alias root='cd $(git root)'
 alias sc="sudo systemctl"
 alias scrotclip="scrot -s /tmp/foo.png && xclip -selection c -t image/png /tmp/foo.png && rm -f /tmp/foo.png"
 alias scu="systemctl --user"
 alias sorry='sudo $(fc -l -n -1)'
+alias totp='ykman oath code'
 alias wget='wget -c'
 
 # Remove unwanted prezto aliases
@@ -207,6 +209,10 @@ function magic-enter () {
     else
         zle accept-line
     fi
+}
+
+function loadenv () {
+  export $(grep -v '^#' "$1" | xargs)
 }
 
 # --------------------------------------------------------------------------- #
