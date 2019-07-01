@@ -123,6 +123,7 @@ alias pcat=pygmentize_cat
 alias peruhome="peru --file=.peru.yaml --sync-dir=./"
 alias pm='python manage.py'
 alias ports='netstat -tulanp'
+alias pyclean='find . -type d -name __pycache__ -exec rm -r {} \+'
 alias rm='trash-put'
 alias root='cd $(git root)'
 alias sc="sudo systemctl"
