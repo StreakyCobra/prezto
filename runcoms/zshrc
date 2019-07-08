@@ -107,12 +107,12 @@ alias e='emc'
 alias git='hub'
 alias pgit='git -c user.email=fabien.dubosson@gmail.com -c user.signingkey=08428F8B810E61F2'
 alias grep='grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn'
-alias l="k -Ah"
-alias ll="k -h"
+alias l="k -h"
+alias ll="k -Ah"
 alias ln='ln -i'
 alias ls="ls --color --group-directories-first"
 alias r=ranger-cd
-alias magit='emacsclient -c --eval "(progn (magit-status) (delete-other-windows))"'
+alias magit='magit'
 alias maven=$MAVEN_HOME/bin/mvn
 alias mkdir='mkdir -pv'
 alias mountt='mount |column -t'
@@ -229,6 +229,16 @@ zle -N magic-enter
 # git flow completion
 GIT_FLOW_ZSH="/usr/share/zsh/site-functions/git-flow-completion.zsh"
 [[ -f $GIT_FLOW_ZSH ]] && source $GIT_FLOW_ZSH
+
+function precmd() {
+  # Print a newline before the prompt, unless it's the
+  # first prompt in the process.
+  if [ -z "$NEW_LINE_BEFORE_PROMPT" ]; then
+    NEW_LINE_BEFORE_PROMPT=1
+  elif [ "$NEW_LINE_BEFORE_PROMPT" -eq 1 ]; then
+    echo;
+  fi
+}
 
 # --------------------------------------------------------------------------- #
 # CONDA                                                                       #
