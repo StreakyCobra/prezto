@@ -21,9 +21,10 @@ ulimit -v 8196000
 # --------------------------------------------------------------------------- #
 # PATHS                                                                       #
 # --------------------------------------------------------------------------- #
-export PATH=$PATH:~/.local/bin
-export PATH=$PATH:~/.npm-packages/bin
-export PATH=$PATH:/opt/anaconda/bin
+export PATH=~/fairtiq/bin:$PATH
+export PATH=~/.local/bin:$PATH
+export PATH=~/.npm-packages/bin:$PATH
+export PATH=/opt/anaconda/bin:$PATH
 
 # --------------------------------------------------------------------------- #
 # ENVIRONMENT VARIABLES                                                       #
