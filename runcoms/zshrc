@@ -35,6 +35,7 @@ export BROWSER="firefox"
 export EDITOR="emc"
 export LESS="-FSRXI"
 export MAVEN_HOME=/opt/maven
+export MAVEN_OPTS="-Xmx2048m"
 export REPORTTIME=10
 export XDG_CONFIG_HOME="/home/fabien/.config/"
 export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
