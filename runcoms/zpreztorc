@@ -42,7 +42,8 @@ zstyle ':prezto:load' pmodule \
   'prompt' \
   'history-substring-search' \
   'pacman' \
-  'python'
+  'python' \
+  'forgit'
 
 #
 # Autosuggestions
