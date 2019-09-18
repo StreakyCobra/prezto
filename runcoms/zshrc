@@ -33,6 +33,7 @@ export ANDROID_HOME="/opt/android-sdk"
 export ARCHFLAGS="-arch native"
 export BROWSER="firefox"
 export EDITOR="emc"
+export FZF_DEFAULT_OPTS="--tac --no-sort --ansi"
 export LESS="-FSRXI"
 export MAVEN_HOME=/opt/maven
 export MAVEN_OPTS="-Xmx2048m"
