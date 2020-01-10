@@ -130,7 +130,6 @@ alias pyclean='find . -type d -name __pycache__ -exec rm -r {} \+'
 alias rm='trash-put'
 alias root='cd $(git root)'
 alias sc="sudo systemctl"
-alias screenshot='shotgun $(slop -c 0,0,0,0.75 -l -f "-i %i -g %g") /tmp/foo.png && xclip -selection c -t image/png /tmp/foo.png && rm -f /tmp/foo.png'
 alias scu="systemctl --user"
 alias sorry='sudo $(fc -l -n -1)'
 alias totp='ykman oath code'
