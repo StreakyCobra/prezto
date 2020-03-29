@@ -100,7 +100,7 @@ alias asshole='echo Alright. You do not have to be rude, you know. && sleep 0.8 
 alias chgrp='chgrp --preserve-root'
 alias chmod='chmod --preserve-root'
 alias chown='chown --preserve-root'
-alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME -c user.email=fabien.dubosson@gmail.com -c user.signingkey=08428F8B810E61F2'
+alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 alias conftig='GIT_DIR=$HOME/.myconf/ tig'
 alias cp='cp -i'
 alias df='df -H'
@@ -109,7 +109,6 @@ alias du='du -sh'
 alias e='emc'
 alias ftq='orchestrator.py'
 alias git='hub'
-alias pgit='git -c user.email=fabien.dubosson@gmail.com -c user.signingkey=08428F8B810E61F2'
 alias grep='grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn'
 alias l="k -h"
 alias ll="k -Ah"
