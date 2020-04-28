@@ -215,7 +215,9 @@ function magic-enter () {
 }
 
 function loadenv () {
-  export $(grep -v '^#' "$1" | xargs)
+  set -a;
+  source "$1";
+  set +a;
 }
 
 # --------------------------------------------------------------------------- #
