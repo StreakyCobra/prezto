@@ -16,7 +16,7 @@ fi
 # Disable ctrl-s and ctrl-q
 stty -ixon
 # Prevent commands to eat all the memory
-ulimit -v 8196000
+ulimit -v 16384000
 
 # --------------------------------------------------------------------------- #
 # PATHS                                                                       #
