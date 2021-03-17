@@ -37,6 +37,7 @@ export FZF_DEFAULT_OPTS="--tac --no-sort --ansi"
 export LESS="-FSRXI"
 export MAVEN_HOME=/opt/maven
 export MAVEN_OPTS="-Xmx2048m"
+export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.9-src.zip
 export REPORTTIME=10
 export XDG_CONFIG_HOME="/home/fabien/.config/"
 export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
